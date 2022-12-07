@@ -8,6 +8,7 @@ use Alex\AdventCode2022\Command\Day3Command;
 use Alex\AdventCode2022\Command\Day4Command;
 use Alex\AdventCode2022\Command\Day5Command;
 use Alex\AdventCode2022\Command\Day6Command;
+use Alex\AdventCode2022\Command\Day7Command;
 
 //$day1Command = new Day1Command();
 //$day1Command->execute();
@@ -24,5 +25,8 @@ use Alex\AdventCode2022\Command\Day6Command;
 //$day5Command = new Day5Command();
 //$day5Command->execute();
 
-$day6Command = new Day6Command();
-$day6Command->execute();
+//$day6Command = new Day6Command();
+//$day6Command->execute();
+
+$day7Command = new Day7Command();
+$day7Command->execute();
