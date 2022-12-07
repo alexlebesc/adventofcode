@@ -1,10 +1,7 @@
 <?php
 
 use Alex\AdventCode2022\CrateMover9001;
-use Alex\AdventCode2022\ElvePairReader;
 use Alex\AdventCode2022\CrateMover9000;
-use Alex\AdventCode2022\OverlapSectionDetector;
-use Alex\AdventCode2022\RealOverlapSectionDetector;
 use Alex\AdventCode2022\StackAndMoveReader;
 use PHPUnit\Framework\TestCase;
 
