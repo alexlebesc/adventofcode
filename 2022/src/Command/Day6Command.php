@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Alex\AdventCode2022\Command;
 
-use Alex\AdventCode2022\DataStreamBufferReader;
+use Alex\AdventCode2022\Reader\DataStreamBufferReader;
 use Alex\AdventCode2022\StartOfMessageMarkerDetector;
 use Alex\AdventCode2022\StartOfPacketMarkerDetector;
 

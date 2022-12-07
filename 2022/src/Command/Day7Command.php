@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Alex\AdventCode2022\Command;
 
-use Alex\AdventCode2022\DataStreamBufferReader;
 use Alex\AdventCode2022\DirectoryFinder;
 use Alex\AdventCode2022\DirectoryToFreeupSpaceFinder;
-use Alex\AdventCode2022\StartOfMessageMarkerDetector;
-use Alex\AdventCode2022\StartOfPacketMarkerDetector;
-use Alex\AdventCode2022\TerminalOutputReader;
+use Alex\AdventCode2022\Reader\TerminalOutputReader;
 
 class Day7Command
 {

@@ -6,7 +6,7 @@ namespace Alex\AdventCode2022\Command;
 
 use Alex\AdventCode2022\RealScoreStrategyGuide;
 use Alex\AdventCode2022\ScoreStrategyGuide;
-use Alex\AdventCode2022\StrategyGuideReader;
+use Alex\AdventCode2022\Reader\StrategyGuideReader;
 
 class Day2Command
 {

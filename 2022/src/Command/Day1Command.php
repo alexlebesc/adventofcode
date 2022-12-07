@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Alex\AdventCode2022\Command;
 
-use Alex\AdventCode2022\ElveCaloriesListReader;
+use Alex\AdventCode2022\Reader\ElveCaloriesListReader;
 use Alex\AdventCode2022\MostCaloriesFinder;
 use Alex\AdventCode2022\Top3CaloriesFinder;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Alex\AdventCode2022;
+namespace Alex\AdventCode2022\Reader;
 
 class StackAndMoveReader
 {

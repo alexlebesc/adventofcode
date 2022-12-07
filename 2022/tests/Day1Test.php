@@ -1,6 +1,6 @@
 <?php
 
-use Alex\AdventCode2022\ElveCaloriesListReader;
+use Alex\AdventCode2022\Reader\ElveCaloriesListReader;
 use Alex\AdventCode2022\MostCaloriesFinder;
 use Alex\AdventCode2022\Top3CaloriesFinder;
 use PHPUnit\Framework\TestCase;

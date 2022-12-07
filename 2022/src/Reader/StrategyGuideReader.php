@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Alex\AdventCode2022;
+namespace Alex\AdventCode2022\Reader;
 
-class RucksackReader
+class StrategyGuideReader
 {
     public function __invoke(string $inputFile): array
     {
@@ -14,14 +14,15 @@ class RucksackReader
             return [];
         }
 
-        $rugsacks = [];
+        $strategyGuide = [];
         while(($line = fgets($fp)) !== false)
         {
             $line = str_replace("\n", '', $line);
-            $rugsacks[] = $line;
+            $battle = explode(' ', $line);
+            $strategyGuide[] = $battle;
         }
         fclose($fp);
 
-        return $rugsacks;
+        return $strategyGuide;
     }
 }

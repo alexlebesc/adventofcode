@@ -1,6 +1,6 @@
 <?php
 
-use Alex\AdventCode2022\ElvePairReader;
+use Alex\AdventCode2022\Reader\ElvePairReader;
 use Alex\AdventCode2022\OverlapSectionDetector;
 use Alex\AdventCode2022\RealOverlapSectionDetector;
 use PHPUnit\Framework\TestCase;

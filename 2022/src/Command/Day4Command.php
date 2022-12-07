@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Alex\AdventCode2022\Command;
 
-use Alex\AdventCode2022\ElvePairReader;
+use Alex\AdventCode2022\Reader\ElvePairReader;
 use Alex\AdventCode2022\OverlapSectionDetector;
 use Alex\AdventCode2022\RealOverlapSectionDetector;
 

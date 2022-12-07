@@ -2,7 +2,7 @@
 
 use Alex\AdventCode2022\BadgeDetector;
 use Alex\AdventCode2022\CommonItemDetector;
-use Alex\AdventCode2022\RucksackReader;
+use Alex\AdventCode2022\Reader\RucksackReader;
 use PHPUnit\Framework\TestCase;
 
 class Day3Test extends TestCase

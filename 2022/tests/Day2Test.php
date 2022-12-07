@@ -3,7 +3,7 @@
 
 use Alex\AdventCode2022\RealScoreStrategyGuide;
 use Alex\AdventCode2022\ScoreStrategyGuide;
-use Alex\AdventCode2022\StrategyGuideReader;
+use Alex\AdventCode2022\Reader\StrategyGuideReader;
 use PHPUnit\Framework\TestCase;
 
 class Day2Test extends TestCase

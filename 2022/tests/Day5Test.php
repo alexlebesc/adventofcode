@@ -2,7 +2,7 @@
 
 use Alex\AdventCode2022\CrateMover9001;
 use Alex\AdventCode2022\CrateMover9000;
-use Alex\AdventCode2022\StackAndMoveReader;
+use Alex\AdventCode2022\Reader\StackAndMoveReader;
 use PHPUnit\Framework\TestCase;
 
 class Day5Test extends TestCase

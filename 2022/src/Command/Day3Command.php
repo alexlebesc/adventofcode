@@ -6,7 +6,7 @@ namespace Alex\AdventCode2022\Command;
 
 use Alex\AdventCode2022\BadgeDetector;
 use Alex\AdventCode2022\CommonItemDetector;
-use Alex\AdventCode2022\RucksackReader;
+use Alex\AdventCode2022\Reader\RucksackReader;
 
 class Day3Command
 {
