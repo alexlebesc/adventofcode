@@ -8,8 +8,10 @@ use Alex\AdventCode2022\Reader\DataStreamBufferReader;
 use Alex\AdventCode2022\StartOfMessageMarkerDetector;
 use Alex\AdventCode2022\StartOfPacketMarkerDetector;
 
-class Day6Command
+class Day6Command extends AbstractCommand
 {
+    protected int $day = 6;
+
     public function execute(): void
     {
         $inputFile = __DIR__ . '/input6.txt';
@@ -20,17 +22,12 @@ class Day6Command
         $startOfPacketMarkerDetector = new StartOfPacketMarkerDetector();
         $startOfPacketMarker = $startOfPacketMarkerDetector($dataStreamBuffer);
 
-        $this->outputResult(sprintf("Day6 result #1: %s", $startOfPacketMarker));
+        $this->outputResult1($startOfPacketMarker);
 
         $startOfMessageMarkerDetector = new StartOfMessageMarkerDetector();
         $startOfMessageMarker = $startOfMessageMarkerDetector($dataStreamBuffer);
 
-        $this->outputResult(sprintf("Day6 result #2: %s", $startOfMessageMarker));
+        $this->outputResult2($startOfMessageMarker);
 
-    }
-
-    private function outputResult(string $output): void
-    {
-        echo $output . "\n";
     }
 }

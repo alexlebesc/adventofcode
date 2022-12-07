@@ -8,8 +8,10 @@ use Alex\AdventCode2022\BadgeDetector;
 use Alex\AdventCode2022\CommonItemDetector;
 use Alex\AdventCode2022\Reader\RucksackReader;
 
-class Day3Command
+class Day3Command extends AbstractCommand
 {
+    protected int $day = 3;
+
     public function execute(): void
     {
         $inputFile = __DIR__ . '/input3.txt';
@@ -20,16 +22,11 @@ class Day3Command
         $commonItemDetector = new CommonItemDetector();
         $commonPrioritySum = $commonItemDetector($rucksacks);
 
-        $this->outputResult(sprintf("Day3 result #1: %d", $commonPrioritySum));
+        $this->outputResult1($commonPrioritySum);
 
         $badgeDetector = new BadgeDetector();
         $badgePrioritySum = $badgeDetector($rucksacks);
 
-        $this->outputResult(sprintf("Day3 result #2: %d", $badgePrioritySum));
-    }
-
-    private function outputResult(string $output): void
-    {
-        echo $output . "\n";
+        $this->outputResult2($badgePrioritySum);
     }
 }

@@ -8,8 +8,10 @@ use Alex\AdventCode2022\Reader\ElvePairReader;
 use Alex\AdventCode2022\OverlapSectionDetector;
 use Alex\AdventCode2022\RealOverlapSectionDetector;
 
-class Day4Command
+class Day4Command extends AbstractCommand
 {
+    protected int $day = 4;
+
     public function execute(): void
     {
         $inputFile = __DIR__ . '/input4.txt';
@@ -20,16 +22,11 @@ class Day4Command
         $overlapSectionDetector = new OverlapSectionDetector();
         $totalFullyContainsSection = $overlapSectionDetector($elvePairs);
 
-        $this->outputResult(sprintf("Day4 result #1: %d", $totalFullyContainsSection));
+        $this->outputResult1($totalFullyContainsSection);
 
         $realOverlapSectionDetector = new RealOverlapSectionDetector();
         $totalOverLapping = $realOverlapSectionDetector($elvePairs);
 
-        $this->outputResult(sprintf("Day4 result #2: %d", $totalOverLapping));
-    }
-
-    private function outputResult(string $output): void
-    {
-        echo $output . "\n";
+        $this->outputResult2($totalOverLapping);
     }
 }

@@ -8,8 +8,10 @@ use Alex\AdventCode2022\CrateMover9000;
 use Alex\AdventCode2022\CrateMover9001;
 use Alex\AdventCode2022\Reader\StackAndMoveReader;
 
-class Day5Command
+class Day5Command extends AbstractCommand
 {
+    protected int $day = 5;
+
     public function execute(): void
     {
         $inputFile = __DIR__ . '/input5.txt';
@@ -21,17 +23,11 @@ class Day5Command
         $moveCrates = new CrateMover9000();
         $topOfStacksMessage = $moveCrates($stacks, $moves);
 
-        $this->outputResult(sprintf("Day5 result #1: %s", $topOfStacksMessage));
+        $this->outputResult1($topOfStacksMessage);
 
         $moveCrates = new CrateMover9001();
         $topOfStacksMessage = $moveCrates($stacks, $moves);
 
-        $this->outputResult(sprintf("Day5 result #2: %s", $topOfStacksMessage));
-
-    }
-
-    private function outputResult(string $output): void
-    {
-        echo $output . "\n";
+        $this->outputResult2($topOfStacksMessage);
     }
 }

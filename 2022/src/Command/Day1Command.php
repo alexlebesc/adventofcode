@@ -8,13 +8,14 @@ use Alex\AdventCode2022\Reader\ElveCaloriesListReader;
 use Alex\AdventCode2022\MostCaloriesFinder;
 use Alex\AdventCode2022\Top3CaloriesFinder;
 
-class Day1Command
+class Day1Command extends AbstractCommand
 {
+    protected int $day = 1;
+
     public function execute(): void
     {
         $inputFile = __DIR__ . '/input1.txt';
 
-        // WHEN calling ElveCaloriesListReader()
         $elveCaloriesListReader = new ElveCaloriesListReader();
         $elveCaloriesList = $elveCaloriesListReader($inputFile);
 
@@ -24,12 +25,7 @@ class Day1Command
         $top3CaloriesFinder = new Top3CaloriesFinder();
         $top3Calories = $top3CaloriesFinder($elveCaloriesList);
 
-        $this->outputResult(sprintf("most calories: %d", $mostCalories));
-        $this->outputResult(sprintf("top 3 calories: %d", $top3Calories));
-    }
-
-    private function outputResult(string $output): void
-    {
-        echo $output . "\n";
+        $this->outputResult1($mostCalories);
+        $this->outputResult2($top3Calories);
     }
 }

@@ -8,8 +8,10 @@ use Alex\AdventCode2022\RealScoreStrategyGuide;
 use Alex\AdventCode2022\ScoreStrategyGuide;
 use Alex\AdventCode2022\Reader\StrategyGuideReader;
 
-class Day2Command
+class Day2Command extends AbstractCommand
 {
+    protected int $day = 2;
+
     public function execute(): void
     {
         $inputFile = __DIR__ . '/input2.txt';
@@ -23,13 +25,7 @@ class Day2Command
         $realScoreStrategyGuide = new RealScoreStrategyGuide();
         $realRotalScore = $realScoreStrategyGuide($strategyGuide);
 
-        $this->outputResult(sprintf("strategy guide total score: %d", $totalScore));
-        $this->outputResult(sprintf("strategy guide total real score: %d", $realRotalScore));
-
-    }
-
-    private function outputResult(string $output): void
-    {
-        echo $output . "\n";
+        $this->outputResult1($totalScore);
+        $this->outputResult2($realRotalScore);
     }
 }

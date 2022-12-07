@@ -8,8 +8,10 @@ use Alex\AdventCode2022\DirectoryFinder;
 use Alex\AdventCode2022\DirectoryToFreeupSpaceFinder;
 use Alex\AdventCode2022\Reader\TerminalOutputReader;
 
-class Day7Command
+class Day7Command extends AbstractCommand
 {
+    protected int $day = 7;
+
     public function execute(): void
     {
         $inputFile = __DIR__ . '/input7.txt';
@@ -21,7 +23,7 @@ class Day7Command
         $totalSize = $directoryFinder(filesystem: $filesystem, atMost: 100000);
 
 
-        $this->outputResult(sprintf("Day7 result #1: %s", $totalSize));
+        $this->outputResult1($totalSize);
 
         $directoryToFreeupSpaceFinder = new DirectoryToFreeupSpaceFinder();
         $totalSize = $directoryToFreeupSpaceFinder(
@@ -30,12 +32,6 @@ class Day7Command
             updateSpace: 30000000
         );
 
-        $this->outputResult(sprintf("Day7 result #2: %s", $totalSize));
-
-    }
-
-    private function outputResult(string $output): void
-    {
-        echo $output . "\n";
+        $this->outputResult2($totalSize);
     }
 }
