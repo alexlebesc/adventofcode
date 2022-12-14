@@ -11,9 +11,18 @@ class Cpu
     private int $x = 1;
     private int $newX = 1;
     private array $strengths = [];
+    private array $crt = [];
 
     public function __construct(private array $instructions)
     {
+        $this->crt = [
+            "........................................",
+            "........................................",
+            "........................................",
+            "........................................",
+            "........................................",
+            "........................................",
+        ];
     }
 
     public function executeUntilCycle(int $cycle)
@@ -21,11 +30,13 @@ class Cpu
         if ($this->clock >= $cycle) {
             throw new \Exception('cycle already passed');
         }
+
         do {
-            $this->incrementClock();
             if (!$this->isInstructionRunning()) {
                 $this->runNextInstruction();
             }
+            $this->drawCrt();
+            $this->incrementClock();
             $this->recordSignalStrengths();
         } while($this->clock < $cycle);
     }
@@ -101,5 +112,31 @@ class Cpu
     private function updateRegistry()
     {
         $this->x = $this->newX;
+    }
+
+    public function getCrt()
+    {
+        return $this->crt;
+    }
+
+    private function drawCrt(): void
+    {
+        // get current CRT line
+        $lineLength = 40;
+        $lineIndex = ($this->clock > 0) ? intval($this->clock/$lineLength) : 0;
+        $CRTLine = $this->crt[$lineIndex] ?? null;
+        if ($CRTLine === null) {
+            return;
+        }
+        $CRTLineArray = str_split($CRTLine);
+
+        // getCurrentSpritePosition
+        $sprite = [$this->x -1, $this->x, $this->x +1];
+        $clockPosition = $this->clock - $lineIndex * $lineLength;
+        if (array_intersect($sprite, [$clockPosition])) {
+            // lit pixel
+            $CRTLineArray[$clockPosition] = '#';
+        }
+        $this->crt[$lineIndex] = implode('', $CRTLineArray);
     }
 }

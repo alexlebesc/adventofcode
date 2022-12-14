@@ -22,7 +22,12 @@ class Day10Command extends AbstractCommand
         $sumOfStrength = $cpu->sumOfStrength();
 
         $this->outputResult1($sumOfStrength);
+        $cpu = new Cpu($instructions);
+        $cpu->executeUntilCycle(240);
+        $crt = $cpu->getCrt();
 
-        //$this->outputResult2($result2);
+        echo "\n\n";
+        echo implode("\n", $crt);
+        echo "\n\n";
     }
 }

@@ -12,7 +12,7 @@ class Day10Test extends TestCase
         // GIVEN
         $inputFile = __DIR__ . '/input10.txt';
 
-        // WHEN calling reader
+        // WHEN
         $reader = new ProgramReader();
         $instructions = $reader($inputFile);
 
@@ -78,5 +78,30 @@ class Day10Test extends TestCase
         // sum of the 20th, 60th, 100th, 140th, 180th, and 220th cycles
         $sumOfStrength = $cpu->sumOfStrength();
         $this->assertEquals(13140, $sumOfStrength);
+    }
+
+    public function testCRT()
+    {
+        // GIVEN
+        $inputFile = __DIR__ . '/input10.txt';
+
+        // WHEN
+        $reader = new ProgramReader();
+        $instructions = $reader($inputFile);
+
+        $cpu = new Cpu($instructions);
+        $cpu->executeUntilCycle(240);
+        $crt = $cpu->getCrt();
+
+        $expected = [
+            "##..##..##..##..##..##..##..##..##..##..",
+            "###...###...###...###...###...###...###.",
+            "####....####....####....####....####....",
+            "#####.....#####.....#####.....#####.....",
+            "######......######......######......####",
+            "#######.......#######.......#######.....",
+        ];
+
+        $this->assertEquals($expected, $crt);
     }
 }
