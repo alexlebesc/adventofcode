@@ -2,6 +2,7 @@
 
 require __dir__ . "/vendor/autoload.php";
 
+use Alex\AdventCode2022\Command\Day10Command;
 use Alex\AdventCode2022\Command\Day1Command;
 use Alex\AdventCode2022\Command\Day2Command;
 use Alex\AdventCode2022\Command\Day3Command;
@@ -38,3 +39,6 @@ $day8Command->execute();
 
 $day9Command = new Day9Command();
 $day9Command->execute();
+
+$day10Command = new Day10Command();
+$day10Command->execute();
