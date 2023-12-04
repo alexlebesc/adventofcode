@@ -3,12 +3,13 @@
 require __dir__ . "/vendor/autoload.php";
 
 use AdventCode2023\Command\Day1Command;
+use AdventCode2023\Command\Day2Command;
 
 $day1Command = new Day1Command();
 $day1Command->execute();
 
-//$day2Command = new Day2Command();
-//$day2Command->execute();
+$day2Command = new Day2Command();
+$day2Command->execute();
 //
 //$day3Command = new Day3Command();
 //$day3Command->execute();
