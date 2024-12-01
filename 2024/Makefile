@@ -28,6 +28,10 @@ npm-install:
 	@echo "Running npm install in the container..."
 	$(DOCKER) run --rm -v $(PWD):/app -w /app $(DOCKER_IMAGE) npm install
 
+npm-bash:
+	@echo "Running npm install in the container..."
+	$(DOCKER) run -it --rm -v $(PWD):/app -w /app $(DOCKER_IMAGE) bash
+
 npm-build:
 	@echo "Building TypeScript project in the container..."
 	$(DOCKER) run --rm -v $(PWD):/app -w /app $(DOCKER_IMAGE) npm run build
