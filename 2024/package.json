@@ -1,0 +1,15 @@
+{
+  "name": "my-typescript-app",
+  "version": "1.0.0",
+  "description": "A simple TypeScript application that prints Hello, World!",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
+
