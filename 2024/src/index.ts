@@ -9,7 +9,7 @@ class Day1 implements DayResult {
     private list1 :number[] = [];
     private list2 :number[] = [];
 
-    private async initializeList(): Promise<string> {
+    private async initializeList(): Promise<boolean> {
         return fs.readFile(this.filePath, 'utf8').then(data => {
             const lines :string[] = data.split('\n');
 
@@ -22,7 +22,7 @@ class Day1 implements DayResult {
             this.list1.sort();
             this.list2.sort();
 
-            return data;
+            return true;
         });
     }
 
