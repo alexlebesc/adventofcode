@@ -10,6 +10,10 @@ class Day1 implements DayResult {
     private list2 :number[] = [];
 
     private async initializeList(): Promise<boolean> {
+        if (this.list1.length > 0 && this.list2.length > 0) {
+            return true;
+        }
+
         return fs.readFile(this.filePath, 'utf8').then(data => {
             const lines :string[] = data.split('\n');
 
