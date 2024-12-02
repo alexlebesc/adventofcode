@@ -8,9 +8,10 @@ DIST_DIR=dist
 
 # Commandes
 DOCKER=docker
+DOCKER_RUN=$(DOCKER) run --rm -v $(PWD):/app -w /app -u 1000 $(DOCKER_IMAGE)
 
 # Cibles
-.PHONY: all clean docker-build docker-run docker-stop npm-install npm-build
+.PHONY: all clean docker-build docker-run docker-stop npm-install npm-build npm-bash npm-generate-files
 
 all: clean docker-build npm-install npm-build docker-run
 
@@ -26,7 +27,7 @@ docker-build:
 
 npm-install:
 	@echo "Running npm install in the container..."
-	$(DOCKER) run --rm -v $(PWD):/app -w /app $(DOCKER_IMAGE) npm install
+	$(DOCKER_RUN) npm install
 
 npm-bash:
 	@echo "Running npm install in the container..."
@@ -34,11 +35,15 @@ npm-bash:
 
 npm-build:
 	@echo "Building TypeScript project in the container..."
-	$(DOCKER) run --rm -v $(PWD):/app -w /app $(DOCKER_IMAGE) npm run build
+	$(DOCKER_RUN) npm run build
 
 npm-start:
 	@echo "Start TypeScript project in the container..."
-	$(DOCKER) run --rm -v $(PWD):/app -w /app $(DOCKER_IMAGE) npm start
+	$(DOCKER_RUN) npm start
+
+npm-generate-files: npm-install npm-build
+	@echo "generate files"
+	$(DOCKER_RUN) npm run generate-files
 
 docker-run:
 	@echo "Running Docker container..."

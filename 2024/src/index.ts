@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 // Chemin du fichier à lire
-const filePath = path.join(__dirname, '../data/1/input.txt');
+const filePath = path.join(__dirname, '../data/input_01.txt');
 
 fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
