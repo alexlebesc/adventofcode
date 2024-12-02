@@ -31,7 +31,7 @@ npm-install:
 
 npm-bash:
 	@echo "Running npm install in the container..."
-	$(DOCKER) run -it --rm -v $(PWD):/app -w /app $(DOCKER_IMAGE) bash
+	$(DOCKER) run -it --rm -u 1000 -v $(PWD):/app -w /app $(DOCKER_IMAGE) bash
 
 npm-build:
 	@echo "Building TypeScript project in the container..."
@@ -44,6 +44,10 @@ npm-start:
 npm-generate-files: npm-install npm-build
 	@echo "generate files"
 	$(DOCKER_RUN) npm run generate-files
+
+npm-day2: npm-install npm-build
+	@echo "day2"
+	$(DOCKER_RUN) npm run day02 
 
 docker-run:
 	@echo "Running Docker container..."

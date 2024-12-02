@@ -1,11 +1,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { Eta } from 'eta';
 
 class FileGenerator {
     private dataDir: string;
+    private srcDir: string;
 
     constructor(dataDir: string = 'data') {
         this.dataDir = path.join(__dirname, '../', dataDir);
+        this.srcDir = path.join(__dirname, '../src');
         this.ensureDirectoryExists();
     }
 
@@ -30,8 +33,27 @@ class FileGenerator {
             }
         }
     }
+
+    public generateClass(count: number = 24): void {
+        const eta = new Eta({views: path.join(__dirname, "templates")});
+
+        for (let i :number = 2; i <= count; i++) {
+            const day = i.toString().padStart(2, '0'); 
+            const fileName :string = 'Day' + day + '.ts';
+            const filePath :string = path.join(this.srcDir, fileName);
+            const content :string = eta.render("./class", { day: day })
+
+            try {
+                fs.writeFileSync(filePath, content);
+                console.log('Created file: ' + fileName);
+            } catch (error) {
+                console.error('Error creating file ' + fileName, error);
+            }
+        }
+    }
 }
 
 // créer une classe typescript qui embarque la logique métier star 1 et star 2
 const generator = new FileGenerator();
-generator.generateFiles();
+//generator.generateFiles();
+generator.generateClass();
