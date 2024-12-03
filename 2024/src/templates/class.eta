@@ -1,8 +1,8 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { DayResult } from './DayResult';
+import { DayResultInterface } from './day-result.interface';
 
-class Day<%= it.day %> implements DayResult {
+class Day<%= it.day %> implements DayResultInterface {
 
     // Chemin du fichier d'input permettant de résoudre l'énigme du jour
     private filePath :string = path.join(__dirname, '../data/input_<%= it.day %>.txt');

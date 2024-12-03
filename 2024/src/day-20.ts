@@ -1,11 +1,11 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { DayResult } from './DayResult';
+import { DayResultInterface } from './day-result.interface';
 
-class Day04 implements DayResult {
+class Day20 implements DayResultInterface {
 
     // Chemin du fichier d'input permettant de résoudre l'énigme du jour
-    private filePath :string = path.join(__dirname, '../data/input_04.txt');
+    private filePath :string = path.join(__dirname, '../data/input_20.txt');
 
     private async initializeList(): Promise<boolean> {
 
@@ -20,7 +20,7 @@ class Day04 implements DayResult {
 
         await this.initializeList();
 
-        // Implémentation pour la première étoile du jour 04
+        // Implémentation pour la première étoile du jour 20
         return 0;
     }
 
@@ -28,7 +28,7 @@ class Day04 implements DayResult {
 
         await this.initializeList();
 
-        // Implémentation pour la deuxième étoile du jour 04 
+        // Implémentation pour la deuxième étoile du jour 20 
 
         return 0;
     }
@@ -36,9 +36,9 @@ class Day04 implements DayResult {
 
 (async () => {
     try {
-        const day04:Day04 = new Day04();
-        console.log('star1 :', await day04.resultStar1()) ;
-        console.log('star2 :', await day04.resultStar2()) ;
+        const day20:Day20 = new Day20();
+        console.log('star1 :', await day20.resultStar1()) ;
+        console.log('star2 :', await day20.resultStar2()) ;
     } catch (erreur) {
         console.error('Erreur :', erreur);
     }

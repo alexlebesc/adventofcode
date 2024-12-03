@@ -39,7 +39,7 @@ class FileGenerator {
 
         for (let i :number = 2; i <= count; i++) {
             const day = i.toString().padStart(2, '0'); 
-            const fileName :string = 'Day' + day + '.ts';
+            const fileName :string = 'day-' + day + '.ts';
             const filePath :string = path.join(this.srcDir, fileName);
             const content :string = eta.render("./class", { day: day })
 
