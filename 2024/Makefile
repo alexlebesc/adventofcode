@@ -45,7 +45,7 @@ npm-generate-files: npm-install npm-build
 	@echo "generate files"
 	$(DOCKER_RUN) npm run generate-files
 
-npm-day: npm-install npm-build
+npm-day: npm-build
 	@echo "day"
 	$(DOCKER_RUN) node dist/day-$(DAY).js
 
