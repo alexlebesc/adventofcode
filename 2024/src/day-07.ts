@@ -7,6 +7,10 @@ class Day07 implements DayResultInterface {
     // Chemin du fichier d'input permettant de résoudre l'énigme du jour
     private filePath :string = path.join(__dirname, '../data/input_07.txt');
     private equations :string[] = [];
+    private wrongEquation :string[] = [];
+    private rightEquationResult :number[] = [];
+
+
 
     private async initializeList(): Promise<boolean> {
 
@@ -17,55 +21,119 @@ class Day07 implements DayResultInterface {
         });
     }
 
-    private findRightEquations(): number[]
+    private findRightEquations(star2 :boolean = false): number[]
     {
-        let rightEquationResult :number[] = [];
-        this.equations.forEach((equation :string) => {
-            const [resultString, membersString] = equation.split(':');
-            const members = membersString.trim().split(' ').map(Number);
-            const result = parseInt(resultString);
+        const rightEquationResult = this.rightEquationResult;
 
-            // nbOperators
-            const nbOperators = (members.length - 1);
-            const operatorCombinations = [];
-            const nbOperatorCombination = parseInt('1'.padEnd(nbOperators, '11'), 2);
+        if (this.rightEquationResult.length === 0) {
+            this.equations.forEach((equation :string) => {
+                const [resultString, membersString] = equation.split(':');
+                const members = membersString.trim().split(' ').map(Number);
+                const result = parseInt(resultString);
 
-            for (let i = 0 ; i <= nbOperatorCombination; i++) {
+                // nbOperators
+                const nbOperators = (members.length - 1);
+                const operatorCombinations = [];
+                const nbOperatorCombination = parseInt('1'.padEnd(nbOperators, '11'), 2);
 
-                // operatorCombinations.push(''+i.toString(2).padEnd(nbOperators, '0'));
-                operatorCombinations.push(i.toString(2).padStart(nbOperators, '0'));
-            }
-            console.log('-------------------------- START --------');
+                for (let i = 0 ; i <= nbOperatorCombination; i++) {
+                    // operatorCombinations.push(''+i.toString(2).padEnd(nbOperators, '0'));
+                    operatorCombinations.push(i.toString(2).padStart(nbOperators, '0'));
+                }
 
-            console.log(equation);
-            console.log(members);
-            console.log(result);
+                if (operatorCombinations.some((operatorCombination) => {
+                    const total = members.reduce((previousMember, member, index) => {
+                        const operator = operatorCombination[index -1];
+                        if (operator !== '0' && operator !== '1') {
+                            throw 'pas d\'operateur';
+                        }
 
-            if (operatorCombinations.some((operatorCombination) => {
-                const total = members.reduce((previousMember, member, index) => {
-                    const operator = operatorCombination[index -1];
-                    if (operator !== '0' && operator !== '1') {
-                        throw 'pas d\'operateur';
-                    }
+                        if (operator == '0' ) {
+                            return previousMember + member;
+                        }
 
-                    if (operator == '0' ) {
-                        return previousMember + member;
-                    }
+                        return previousMember * member;
+                    });
 
-                    return previousMember * member;
-                });
+                    return (result === total);
+                })) {
+                    this.rightEquationResult.push(result);
+                } else {
+                    this.wrongEquation.push(equation);
+                }
+            });
+        }
 
-                console.log(result, operatorCombination, total, (result === total));
-                return (result === total);
-            })) {
-                console.log('-------------------------- ADDED --------');
-                rightEquationResult.push(result);
-            }
+        if (star2) {
+            this.wrongEquation.forEach((equation :string) => {
+                const [resultString, membersString] = equation.split(':');
+                const members = membersString.trim().split(' ').map(Number);
+                const result = parseInt(resultString);
 
-            console.log('-------------------------- END --------');
+                // nbOperators
+                const nbOperators = (members.length - 1);
+                const operatorCombinations = [];
+                const nbOperatorCombination = parseInt('2'.padEnd(nbOperators, '22'), 3);
 
-        });
-        return rightEquationResult;
+                for (let i = 0 ; i <= nbOperatorCombination; i++) {
+                    operatorCombinations.push(i.toString(3).padStart(nbOperators, '0'));
+                }
+
+                console.log('-------------------------- START --------');
+
+                console.log(equation);
+                console.log(members);
+                console.log(result);
+
+                if (operatorCombinations.some((operatorCombination) => {
+                    let concatFirst = false;
+                    const total = members.reduce((previousMember, member, index, allMembers) => {
+                        const operator = operatorCombination[index -1];
+                        const previousOperator = operatorCombination[index - 2] ?? 3;
+                        const nextOperator = operatorCombination[index] ?? '3';
+                        if (operator !== '0' && operator !== '1' && operator !== '2') {
+                            throw 'pas d\'operateur';
+                        }
+
+                        if (operator == '0' && nextOperator != '2') {
+                            return previousMember + member;
+                        }
+
+                        if (operator == '1' && nextOperator != '2') {
+                            return previousMember * member;
+                        }
+
+                        if (!concatFirst) {
+                            concatFirst = true;
+                            return previousMember;
+                        }
+
+                        concatFirst = false;
+                        const newConcatValue = parseInt(allMembers[index - 1].toString().concat(member.toString()));
+
+                        if (previousOperator == '0') {
+                            return previousMember + newConcatValue;
+                        }
+
+                        if (previousOperator == '1') {
+                            return previousMember * newConcatValue;
+                        }
+
+                        return newConcatValue;
+                    });
+
+                    console.log(result, operatorCombination, total, (result === total));
+                    return (result === total);
+                })) {
+                    console.log('-------------------------- ADDED --------');
+                    this.rightEquationResult.push(result);
+                }
+
+                console.log('-------------------------- END --------');
+            });
+        }
+
+        return this.rightEquationResult;
     }
 
     public async resultStar1(): Promise<number> {
@@ -81,10 +149,9 @@ class Day07 implements DayResultInterface {
 
         await this.initializeList();
 
-        // Implémentation pour la deuxième étoile du jour 07 
-
-
-        return 0;
+        // Implémentation pour la deuxième étoile du jour 07
+        const rightEquationResults = this.findRightEquations(true);
+        return rightEquationResults.reduce((total, result) => total + result, 0);
     }
 }
 
