@@ -7,9 +7,6 @@ class Day07 implements DayResultInterface {
     // Chemin du fichier d'input permettant de résoudre l'énigme du jour
     private filePath :string = path.join(__dirname, '../data/input_07.txt');
     private inputEquations :string[] = [];
-    private wrongEquation :string[] = [];
-    private rightEquationResult :number[] = [];
-
 
 
     private async initializeList(): Promise<boolean> {
